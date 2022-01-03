@@ -8,7 +8,6 @@ import { BuildersModule } from './builders/builders.module';
 import { CitiesModule } from './cities/cities.module';
 import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
-import { CitiesService } from './cities/cities.service';
 
 @Module({
   imports: [
