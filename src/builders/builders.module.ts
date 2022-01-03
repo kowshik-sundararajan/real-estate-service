@@ -7,6 +7,7 @@ import { Builder, BuilderEntity } from './entities/builder.entity';
 @Module({
   imports: [MongooseModule.forFeature([{ name: Builder.name, schema: BuilderEntity }])],
   controllers: [BuildersController],
-  providers: [BuildersService]
+  providers: [BuildersService],
+  exports: [BuildersService]
 })
 export class BuildersModule {}

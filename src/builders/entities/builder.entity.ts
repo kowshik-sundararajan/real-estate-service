@@ -1,10 +1,12 @@
 import { Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
-import { User } from "src/users/entities/user.entity";
 
 export type BuilderDocument = Builder & Document;
 
-export class Builder extends User {
+export class Builder {
+  @Prop({ required: true, index: 'text' })
+  name: string;
+
   @Prop({ required: true })
   registrationNumber: string;
 }

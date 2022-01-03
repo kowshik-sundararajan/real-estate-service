@@ -8,6 +8,7 @@ import { BuildersModule } from './builders/builders.module';
 import { CitiesModule } from './cities/cities.module';
 import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
+import { CitiesService } from './cities/cities.service';
 
 @Module({
   imports: [
@@ -29,8 +30,8 @@ import { UsersModule } from './users/users.module';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthenticationMiddleware)
-      .forRoutes({ path: '*', method: RequestMethod.ALL });
+    // consumer
+    //   .apply(AuthenticationMiddleware)
+    //   .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }
