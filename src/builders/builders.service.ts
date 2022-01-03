@@ -4,7 +4,6 @@ import { FilterQuery, Model } from 'mongoose';
 import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
 import { CreateBuilderDto } from './dto/create-builder.dto';
 import { GetBuilderDto } from './dto/get-builder.dto';
-import { UpdateBuilderDto } from './dto/update-builder.dto';
 import { Builder, BuilderDocument } from './entities/builder.entity';
 
 @Injectable()
@@ -28,13 +27,5 @@ export class BuildersService {
 
   findOne(getBuilderDto: GetBuilderDto): Promise<Builder> {
     return this.builderModel.findById(getBuilderDto.id).exec();
-  }
-
-  update(id: number, updateBuilderDto: UpdateBuilderDto) {
-    return `This action updates a #${id} builder`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} builder`;
   }
 }

@@ -4,7 +4,6 @@ import { FilterQuery, Model } from 'mongoose';
 import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
 
 @Injectable()
@@ -27,13 +26,5 @@ export class UsersService {
 
   findOne(getUserDto: GetUserDto): Promise<User> {
     return this.userModel.findById(getUserDto.id).exec();
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
   }
 }

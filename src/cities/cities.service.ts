@@ -4,7 +4,6 @@ import { FilterQuery, Model } from 'mongoose';
 import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
 import { CreateCityDto } from './dto/create-city.dto';
 import { GetCityDto } from './dto/get-city.dto';
-import { UpdateCityDto } from './dto/update-city.dto';
 import { City, CityDocument } from './entities/city.entity';
 
 @Injectable()
@@ -27,13 +26,5 @@ export class CitiesService {
 
   findOne(getCityDto: GetCityDto): Promise<City> {
     return this.cityModel.findById(getCityDto.id).exec();
-  }
-
-  update(id: number, updateCityDto: UpdateCityDto) {
-    return `This action updates a #${id} city`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} city`;
   }
 }

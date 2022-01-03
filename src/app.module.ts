@@ -30,8 +30,8 @@ import { CitiesService } from './cities/cities.service';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    // consumer
-    //   .apply(AuthenticationMiddleware)
-    //   .forRoutes({ path: '*', method: RequestMethod.ALL });
+    consumer
+      .apply(AuthenticationMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }
