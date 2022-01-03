@@ -10,8 +10,9 @@ import { Builder, BuilderDocument } from './entities/builder.entity';
 export class BuildersService {
   constructor(@InjectModel(Builder.name) private builderModel: Model<BuilderDocument>) {}
 
-  create(createBuilderDto: CreateBuilderDto) {
-    return 'This action adds a new builder';
+  create(createBuilderDto: CreateBuilderDto): Promise<Builder> {
+    const createdBuilder = new this.builderModel(createBuilderDto);
+    return createdBuilder.save();
   }
 
   findAll() {

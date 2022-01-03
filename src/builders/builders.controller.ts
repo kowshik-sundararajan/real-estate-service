@@ -10,7 +10,7 @@ export class BuildersController {
   constructor(private readonly buildersService: BuildersService) {}
 
   @Post()
-  create(@Body() createBuilderDto: CreateBuilderDto) {
+  create(@Body() createBuilderDto: CreateBuilderDto): Promise<Builder> {
     return this.buildersService.create(createBuilderDto);
   }
 

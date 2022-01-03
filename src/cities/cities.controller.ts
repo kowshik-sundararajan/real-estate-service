@@ -10,7 +10,7 @@ export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
 
   @Post()
-  create(@Body() createCityDto: CreateCityDto) {
+  create(@Body() createCityDto: CreateCityDto): Promise<City> {
     return this.citiesService.create(createCityDto);
   }
 

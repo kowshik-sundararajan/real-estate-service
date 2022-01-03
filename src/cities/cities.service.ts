@@ -10,8 +10,9 @@ import { City, CityDocument } from './entities/city.entity';
 export class CitiesService {
   constructor(@InjectModel(City.name) private cityModel: Model<CityDocument>) {}
 
-  create(createCityDto: CreateCityDto) {
-    return 'This action adds a new city';
+  create(createCityDto: CreateCityDto): Promise<City> {
+    const createdCity = new this.cityModel(createCityDto);
+    return createdCity.save();
   }
 
   findAll() {
