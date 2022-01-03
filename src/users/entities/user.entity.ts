@@ -4,7 +4,7 @@ import { Document } from "mongoose";
 export type UserDocument = User & Document;
 
 export class User {
-  @Prop({ required: true })
+  @Prop({ required: true, index: 'text' })
   name: string;
 
   @Prop({ required: true })

@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
 import { CitiesService } from './cities.service';
 import { CreateCityDto } from './dto/create-city.dto';
 import { GetCityDto } from './dto/get-city.dto';
@@ -15,8 +16,8 @@ export class CitiesController {
   }
 
   @Get()
-  findAll() {
-    return this.citiesService.findAll();
+  search(@Query() searchCityDto: SearchEntityDto): Promise<City[]> {
+    return this.citiesService.search(searchCityDto);
   }
 
   @Get(':id')

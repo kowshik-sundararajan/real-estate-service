@@ -7,7 +7,7 @@ export type ProjectDocument = Project & Document;
 
 @Schema()
 export class Project {
-  @Prop({ required: true })
+  @Prop({ required: true, index: 'text' })
   name: string;
 
   @Prop()

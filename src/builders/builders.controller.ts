@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
 import { BuildersService } from './builders.service';
 import { CreateBuilderDto } from './dto/create-builder.dto';
 import { GetBuilderDto } from './dto/get-builder.dto';
@@ -15,8 +16,8 @@ export class BuildersController {
   }
 
   @Get()
-  findAll() {
-    return this.buildersService.findAll();
+  search(@Query() searchBuilderDto: SearchEntityDto): Promise<Builder[]> {
+    return this.buildersService.search(searchBuilderDto);
   }
 
   @Get(':id')

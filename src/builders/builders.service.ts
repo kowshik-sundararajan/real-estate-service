@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { FilterQuery, Model } from 'mongoose';
+import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
 import { CreateBuilderDto } from './dto/create-builder.dto';
 import { GetBuilderDto } from './dto/get-builder.dto';
 import { UpdateBuilderDto } from './dto/update-builder.dto';
@@ -15,8 +16,13 @@ export class BuildersService {
     return createdBuilder.save();
   }
 
-  findAll() {
-    return `This action returns all builders`;
+  search(searchBuilderDto: SearchEntityDto): Promise<Builder[]> {
+    const filters: FilterQuery<BuilderDocument> = {};
+
+    if (searchBuilderDto.query) {
+      filters.$text = { $search: searchBuilderDto.query }
+    }
+    return this.builderModel.find(filters).exec();
   }
 
   findOne(getBuilderDto: GetBuilderDto): Promise<Builder> {
