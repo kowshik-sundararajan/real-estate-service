@@ -21,6 +21,7 @@ export class ProjectsController {
 
   @Get()
   @ApiOperation({ summary: 'Search projects' })
+  @ApiBody({ type: [Project] })
   @ApiOkResponse({ description: 'Result of projects matching the given query' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   search(@Query() searchProjectDto: SearchEntityQueryDto): Promise<Project[]> {
@@ -30,6 +31,7 @@ export class ProjectsController {
   @Get(':id')
   @ApiOperation({ summary: 'Get project by id' })
   @ApiParam({ name: 'id', type: 'string' })
+  @ApiBody({ type: Project })
   @ApiOkResponse({ description: 'Project matching the given id' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   findOne(@Param() getProjectDto: GetProjectDto): Promise<Project> {

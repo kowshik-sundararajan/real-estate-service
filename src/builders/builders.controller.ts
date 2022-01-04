@@ -21,6 +21,7 @@ export class BuildersController {
 
   @Get()
   @ApiOperation({ summary: 'Search builders' })
+  @ApiBody({ type: [Builder] })
   @ApiOkResponse({ description: 'Result of builders matching the given query' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   search(@Query() searchBuilderDto: SearchEntityQueryDto): Promise<Builder[]> {
@@ -30,6 +31,7 @@ export class BuildersController {
   @Get(':id')
   @ApiOperation({ summary: 'Get builder by id' })
   @ApiParam({ name: 'id', type: 'string' })
+  @ApiBody({ type: Builder })
   @ApiOkResponse({ description: 'Builder matching the given id' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   findOne(@Param() getBuilderDto: GetBuilderDto): Promise<Builder> {

@@ -21,6 +21,7 @@ export class UsersController {
 
   @Get()
   @ApiOperation({ summary: 'Search users' })
+  @ApiBody({ type: [User] })
   @ApiOkResponse({ description: 'Result of users matching the given query' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   search(@Query() searchUserDto: SearchEntityQueryDto): Promise<User[]> {
@@ -30,6 +31,7 @@ export class UsersController {
   @Get(':id')
   @ApiOperation({ summary: 'Get user by id' })
   @ApiParam({ name: 'id', type: 'string' })
+  @ApiBody({ type: User })
   @ApiOkResponse({ description: 'User matching the given id' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   findOne(@Param() getUserDto: GetUserDto): Promise<User> {

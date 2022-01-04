@@ -21,6 +21,7 @@ export class CitiesController {
 
   @Get()
   @ApiOperation({ summary: 'Search cities' })
+  @ApiBody({ type: [City] })
   @ApiOkResponse({ description: 'Result of cities matching the given query' })
   search(@Query() searchCityDto: SearchEntityQueryDto): Promise<City[]> {
     return this.citiesService.search(searchCityDto);
@@ -29,6 +30,7 @@ export class CitiesController {
   @Get(':id')
   @ApiOperation({ summary: 'Get city by id' })
   @ApiParam({ name: 'id', type: 'string' })
+  @ApiBody({ type: City })
   @ApiOkResponse({ description: 'City matching the given id' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   findOne(@Param() getCityDto: GetCityDto): Promise<City> {
