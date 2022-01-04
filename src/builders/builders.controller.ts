@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, HttpStatus } from '@nestjs/common';
-import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
+import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
 import { BuildersService } from './builders.service';
 import { CreateBuilderDto } from './dto/create-builder.dto';
@@ -31,7 +31,7 @@ export class BuildersController {
   @Get(':id')
   @ApiOperation({ summary: 'Get builder by id' })
   @ApiParam({ name: 'id', type: 'string' })
-  @ApiResponse({ status: HttpStatus.OK, description: 'Builder matching the given id' })
+  @ApiOkResponse({ description: 'Builder matching the given id' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   findOne(@Param() getBuilderDto: GetBuilderDto): Promise<Builder> {
     return this.buildersService.findOne(getBuilderDto);

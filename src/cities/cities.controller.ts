@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Param, Query, HttpStatus } from '@nestjs/common';
-import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
+import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
 import { CitiesService } from './cities.service';
 import { CreateCityDto } from './dto/create-city.dto';
@@ -30,7 +30,7 @@ export class CitiesController {
   @Get(':id')
   @ApiOperation({ summary: 'Get city by id' })
   @ApiParam({ name: 'id', type: 'string' })
-  @ApiResponse({ status: HttpStatus.OK, description: 'City matching the given id' })
+  @ApiOkResponse({ description: 'City matching the given id' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   findOne(@Param() getCityDto: GetCityDto): Promise<City> {
     return this.citiesService.findOne(getCityDto);
