@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiUnauthorizedResponse } from '@nestjs/swagger';
-import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
+import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
 import { BuildersService } from './builders.service';
 import { CreateBuilderDto } from './dto/create-builder.dto';
 import { GetBuilderDto } from './dto/get-builder.dto';
@@ -23,7 +23,7 @@ export class BuildersController {
   @ApiOperation({ summary: 'Search builders' })
   @ApiOkResponse({ description: 'Result of builders matching the given query' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  search(@Query() searchBuilderDto: SearchEntityDto): Promise<Builder[]> {
+  search(@Query() searchBuilderDto: SearchEntityQueryDto): Promise<Builder[]> {
     return this.buildersService.search(searchBuilderDto);
   }
 

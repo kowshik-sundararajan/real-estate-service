@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
-import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
+import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
 import { CreateCityDto } from './dto/create-city.dto';
 import { GetCityDto } from './dto/get-city.dto';
 import { City, CityDocument } from './entities/city.entity';
@@ -15,7 +15,7 @@ export class CitiesService {
     return createdCity.save();
   }
 
-  search(searchCityDto: SearchEntityDto): Promise<City[]> {
+  search(searchCityDto: SearchEntityQueryDto): Promise<City[]> {
     const filters: FilterQuery<CityDocument> = {};
 
     if (searchCityDto.query) {

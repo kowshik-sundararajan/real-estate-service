@@ -3,7 +3,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
 import { User } from './entities/user.entity';
-import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
+import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 @Controller('users')
@@ -23,7 +23,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Search users' })
   @ApiOkResponse({ description: 'Result of users matching the given query' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  search(@Query() searchUserDto: SearchEntityDto): Promise<User[]> {
+  search(@Query() searchUserDto: SearchEntityQueryDto): Promise<User[]> {
     return this.usersService.search(searchUserDto);
   }
 

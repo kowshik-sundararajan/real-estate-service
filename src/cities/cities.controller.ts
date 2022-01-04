@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiUnauthorizedResponse } from '@nestjs/swagger';
-import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
+import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
 import { CitiesService } from './cities.service';
 import { CreateCityDto } from './dto/create-city.dto';
 import { GetCityDto } from './dto/get-city.dto';
@@ -22,7 +22,7 @@ export class CitiesController {
   @Get()
   @ApiOperation({ summary: 'Search cities' })
   @ApiOkResponse({ description: 'Result of cities matching the given query' })
-  search(@Query() searchCityDto: SearchEntityDto): Promise<City[]> {
+  search(@Query() searchCityDto: SearchEntityQueryDto): Promise<City[]> {
     return this.citiesService.search(searchCityDto);
   }
 

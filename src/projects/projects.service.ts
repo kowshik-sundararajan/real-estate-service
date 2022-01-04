@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
-import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
+import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { GetProjectDto } from './dto/get-project.dto';
 import { Project, ProjectDocument } from './entities/project.entity';
@@ -15,7 +15,7 @@ export class ProjectsService {
     return createdProject.save();
   }
 
-  search(searchProjectDto: SearchEntityDto): Promise<Project[]> {
+  search(searchProjectDto: SearchEntityQueryDto): Promise<Project[]> {
     const filters: FilterQuery<ProjectDocument> = {};
 
     if (searchProjectDto.query) {

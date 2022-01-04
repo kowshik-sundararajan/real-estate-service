@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
-import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
+import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
 import { User, UserDocument } from './entities/user.entity';
@@ -15,7 +15,7 @@ export class UsersService {
     return createdUser.save();
   }
 
-  search(searchUserDto: SearchEntityDto): Promise<User[]> {
+  search(searchUserDto: SearchEntityQueryDto): Promise<User[]> {
     const filters: FilterQuery<UserDocument> = {};
 
     if (searchUserDto.query) {

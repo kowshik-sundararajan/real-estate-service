@@ -3,7 +3,7 @@ import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { GetProjectDto } from './dto/get-project.dto';
 import { Project } from './entities/project.entity';
-import { SearchEntityDto } from 'src/common/dto/search-entity.dto';
+import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 @Controller('projects')
@@ -23,7 +23,7 @@ export class ProjectsController {
   @ApiOperation({ summary: 'Search projects' })
   @ApiOkResponse({ description: 'Result of projects matching the given query' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  search(@Query() searchProjectDto: SearchEntityDto): Promise<Project[]> {
+  search(@Query() searchProjectDto: SearchEntityQueryDto): Promise<Project[]> {
     return this.projectsService.search(searchProjectDto);
   }
 
