@@ -6,11 +6,11 @@ export type BuilderDocument = Builder & Document;
 
 export class Builder {
   @Prop({ required: true, index: 'text' })
-  @ApiProperty({ type: 'string', required: true, example: 'Sloane constructions' })
+  @ApiProperty({ type: 'string', example: 'Sloane constructions' })
   name: string;
 
   @Prop({ required: true })
-  @ApiProperty({ type: 'string', required: true, example: 'SGREG123' })
+  @ApiProperty({ type: 'string', example: 'SGREG123' })
   registrationNumber: string;
 }
 

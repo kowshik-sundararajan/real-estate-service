@@ -21,7 +21,6 @@ export class ProjectsController {
 
   @Get()
   @ApiOperation({ summary: 'Search projects' })
-  @ApiQuery({ type: SearchEntityDto })
   @ApiOkResponse({ description: 'Result of projects matching the given query' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   search(@Query() searchProjectDto: SearchEntityDto): Promise<Project[]> {

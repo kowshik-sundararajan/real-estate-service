@@ -7,11 +7,11 @@ export type CityDocument = City & Document;
 @Schema()
 export class City {
   @Prop({ required: true, index: 'text' })
-  @ApiProperty({ type: 'string', required: true, example: 'Singapore' })
+  @ApiProperty({ type: 'string', example: 'Singapore' })
   name: string;
 
   @Prop({ required: true })
-  @ApiProperty({ type: 'string', required: true, example: 'SG' })
+  @ApiProperty({ type: 'string', example: 'SG' })
   code: string;
 }
 

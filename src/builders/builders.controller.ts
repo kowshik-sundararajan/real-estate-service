@@ -21,7 +21,6 @@ export class BuildersController {
 
   @Get()
   @ApiOperation({ summary: 'Search builders' })
-  @ApiQuery({ type: SearchEntityDto })
   @ApiOkResponse({ description: 'Result of builders matching the given query' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   search(@Query() searchBuilderDto: SearchEntityDto): Promise<Builder[]> {

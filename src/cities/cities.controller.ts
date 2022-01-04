@@ -21,7 +21,6 @@ export class CitiesController {
 
   @Get()
   @ApiOperation({ summary: 'Search cities' })
-  @ApiQuery({ type: SearchEntityDto })
   @ApiOkResponse({ description: 'Result of cities matching the given query' })
   search(@Query() searchCityDto: SearchEntityDto): Promise<City[]> {
     return this.citiesService.search(searchCityDto);

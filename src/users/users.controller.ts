@@ -21,7 +21,6 @@ export class UsersController {
 
   @Get()
   @ApiOperation({ summary: 'Search users' })
-  @ApiQuery({ type: SearchEntityDto })
   @ApiOkResponse({ description: 'Result of users matching the given query' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   search(@Query() searchUserDto: SearchEntityDto): Promise<User[]> {
