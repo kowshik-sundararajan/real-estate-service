@@ -1,22 +1,42 @@
+import { createMock } from '@golevelup/ts-jest';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { BuildersService } from './builders/builders.service';
+import { CitiesService } from './cities/cities.service';
+import { ProjectsService } from './projects/projects.service';
 
 describe('AppController', () => {
-  let appController: AppController;
+  let controller: AppController;
+
+  const mockBuildersService = createMock<BuildersService>();
+  const mockCitiesService = createMock<CitiesService>();
+  const mockProjectsService = createMock<ProjectsService>();
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [
+        AppService,
+        {
+          provide: BuildersService,
+          useValue: mockBuildersService,
+        },
+        {
+          provide: CitiesService,
+          useValue: mockCitiesService,
+        },
+        {
+          provide: ProjectsService,
+          useValue: mockProjectsService,
+        }
+      ],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    controller = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
-    });
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
   });
 });
