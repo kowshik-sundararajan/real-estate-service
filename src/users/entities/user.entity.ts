@@ -1,7 +1,7 @@
 import { Prop, SchemaFactory } from "@nestjs/mongoose";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Document, SchemaTypes } from "mongoose";
-import { Builder } from "src/builders/entities/builder.entity";
+import { Builder } from "../../builders/entities/builder.entity";
 
 export type UserDocument = User & Document;
 
@@ -16,7 +16,7 @@ export class User {
 
   @Prop({ type: SchemaTypes.ObjectId, ref: 'Builder' })
   @ApiPropertyOptional({ type: Builder })
-  builder: Builder;
+  builder?: Builder;
 }
 
 export const UserEntity = SchemaFactory.createForClass(User);

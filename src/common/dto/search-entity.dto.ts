@@ -1,8 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString } from "class-validator";
-import { Builder } from "src/builders/entities/builder.entity";
-import { City } from "src/cities/entities/city.entity";
-import { Project } from "src/projects/entities/project.entity";
+import { Builder } from "../../builders/entities/builder.entity";
+import { City } from "../../cities/entities/city.entity";
+import { Project } from "../../projects/entities/project.entity";
 
 export class SearchEntityQueryDto {
   @IsNotEmpty()

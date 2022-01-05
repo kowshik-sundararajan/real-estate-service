@@ -1,10 +1,10 @@
 import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
+import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { GetProjectDto } from './dto/get-project.dto';
 import { Project } from './entities/project.entity';
-import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
-import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { SearchEntityQueryDto } from '../common/dto/search-entity.dto';
 
 @Controller('projects')
 export class ProjectsController {

@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsDate, IsNumber, IsString, IsNotEmpty, Max, Min, IsMongoId, IsOptional, IsISO8601 } from 'class-validator';
-import { Builder } from 'src/builders/entities/builder.entity';
-import { City } from 'src/cities/entities/city.entity';
+import { IsNumber, IsString, IsNotEmpty, Max, Min, IsMongoId, IsOptional, IsISO8601 } from 'class-validator';
+import { Builder } from '../../builders/entities/builder.entity';
+import { City } from '../../cities/entities/city.entity';
 
 export class CreateProjectDto {
   @IsString()

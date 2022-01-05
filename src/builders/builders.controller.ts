@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
-import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiUnauthorizedResponse } from '@nestjs/swagger';
-import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
+import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { SearchEntityQueryDto } from '../common/dto/search-entity.dto';
 import { BuildersService } from './builders.service';
 import { CreateBuilderDto } from './dto/create-builder.dto';
 import { GetBuilderDto } from './dto/get-builder.dto';

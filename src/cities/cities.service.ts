@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
-import { SearchEntityQueryDto } from 'src/common/dto/search-entity.dto';
+import { SearchEntityQueryDto } from '../common/dto/search-entity.dto';
 import { CreateCityDto } from './dto/create-city.dto';
 import { GetCityDto } from './dto/get-city.dto';
 import { City, CityDocument } from './entities/city.entity';
