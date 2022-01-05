@@ -13,31 +13,31 @@ export class CreateProjectDto {
   @Min(0)
   @IsOptional()
   @ApiPropertyOptional({ type: 'number', example: 500_000 })
-  priceMin: number;
+  priceMin?: number;
 
   @IsNumber()
   @Max(Number.MAX_VALUE)
   @IsOptional()
   @ApiPropertyOptional({ type: 'number', example: 500_000 })
-  priceMax: number;
+  priceMax?: number;
 
   @IsISO8601()
   @IsOptional()
   @ApiPropertyOptional({ type: 'string', example: new Date().toISOString() })
-  startDate: string;
+  startDate?: string;
 
   @IsISO8601()
   @IsOptional()
   @ApiPropertyOptional({ type: 'string', example: new Date().toISOString() })
-  endDate: string;
+  endDate?: string;
 
   @IsMongoId()
   @IsOptional()
   @ApiPropertyOptional({ type: Builder })
-  builder: Builder;
+  builder?: Builder;
 
   @IsMongoId()
   @IsOptional()
   @ApiPropertyOptional({ type: City })
-  city: City;
+  city?: City;
 }

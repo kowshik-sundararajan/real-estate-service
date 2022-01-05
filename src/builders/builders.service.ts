@@ -11,7 +11,6 @@ export class BuildersService {
   constructor(@InjectModel(Builder.name) private builderModel: Model<BuilderDocument>) {}
 
   create(createBuilderDto: CreateBuilderDto): Promise<Builder> {
-    console.log(createBuilderDto);
     const createdBuilder = new this.builderModel(createBuilderDto);
     return createdBuilder.save();
   }

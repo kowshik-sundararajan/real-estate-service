@@ -14,27 +14,27 @@ export class Project {
 
   @Prop()
   @ApiPropertyOptional({ type: 'number', example: 500_000 })
-  priceMin: number;
+  priceMin?: number;
 
   @Prop()
   @ApiPropertyOptional({ type: 'number', example: 500_000 })
-  priceMax: number;
+  priceMax?: number;
 
   @Prop()
   @ApiPropertyOptional({ type: 'date', example: new Date().toISOString() })
-  startDate: Date;
+  startDate?: Date;
 
   @Prop()
   @ApiPropertyOptional({ type: 'date', example: new Date().toISOString() })
-  endDate: Date;
+  endDate?: Date;
 
   @Prop({ type: SchemaTypes.ObjectId, ref: 'City' })
   @ApiPropertyOptional({ type: City })
-  city: City;
+  city?: City;
 
   @Prop({ type: SchemaTypes.ObjectId, ref: 'Builder' })
   @ApiPropertyOptional({ type: Builder })
-  builder: Builder;
+  builder?: Builder;
 }
 
 export const ProjectEntity = SchemaFactory.createForClass(Project);
