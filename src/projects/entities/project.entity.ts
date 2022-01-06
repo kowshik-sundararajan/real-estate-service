@@ -1,13 +1,26 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { Document, SchemaTypes } from "mongoose";
+import { Expose } from "class-transformer";
+import { Document, SchemaTypes, Types } from "mongoose";
 import { Builder } from "../../builders/entities/builder.entity";
 import { City } from "../../cities/entities/city.entity";
 
 export type ProjectDocument = Project & Document;
 
-@Schema()
+@Schema({
+  toJSON: {
+    virtuals: true
+  }
+})
 export class Project {
+  _id: Types.ObjectId;
+
+  @Expose()
+  @ApiProperty({ type: 'string' })
+  get id(): Types.ObjectId {
+    return this._id;
+  };
+
   @Prop({ required: true, index: 'text' })
   @ApiProperty({ type: 'string', example: 'Sloane Mansions' })
   name: string;

@@ -7,10 +7,10 @@ import { User } from './entities/user.entity';
 describe('UsersService', () => {
   let service: UsersService;
 
-  const mockUser: User = {
+  const mockUser = {
     name: 'Jon Snow',
     email: 'jon@snow.com',
-  };
+  } as User;
 
   const mockCreatedUser: { _id: string } = {
     _id: 's0meU5erId',

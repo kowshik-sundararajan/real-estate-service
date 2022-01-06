@@ -7,10 +7,10 @@ import { Builder } from './entities/builder.entity';
 describe('BuildersService', () => {
   let service: BuildersService;
 
-  const mockBuilder: Builder = {
+  const mockBuilder = {
     name: 'Sloane constructions',
     registrationNumber: 'SGREG123'
-  };
+  } as Builder;
 
   const mockCreatedBuilder: { _id: string } = {
     _id: 's0meBu1lderId',

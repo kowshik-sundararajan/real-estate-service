@@ -7,9 +7,9 @@ import { ProjectsService } from './projects.service';
 describe('ProjectsService', () => {
   let service: ProjectsService;
 
-  const mockProject: Project = {
+  const mockProject = {
     name: 'Sloane Mansions'
-  };
+  } as Project;
 
   const mockCreatedProject: { _id: string } = {
     _id: 's0mePr0jectId'

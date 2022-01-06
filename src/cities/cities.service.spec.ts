@@ -7,10 +7,10 @@ import { City } from './entities/city.entity';
 describe('CitiesService', () => {
   let service: CitiesService;
 
-  const mockCity: City = {
+  const mockCity = {
     name: 'Singapore',
     code: 'SG'
-  };
+  } as City;
 
   const mockCreatedCity: { _id: string } = {
     _id: 's0meC1tyId'
