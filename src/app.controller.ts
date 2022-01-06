@@ -1,22 +1,35 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Query, Req, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiBody, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse } from '@nestjs/swagger';
-import { AppService } from './app.service';
 import { BuildersService } from './builders/builders.service';
-import { Builder } from './builders/entities/builder.entity';
 import { CitiesService } from './cities/cities.service';
-import { City } from './cities/entities/city.entity';
 import { SearchEntityQueryDto, SearchEntityResponseDto } from './common/dto/search-entity.dto';
-import { Project } from './projects/entities/project.entity';
+import { IFacebookLoginRequestInterace } from './common/interfaces/facebook-login-request.interace';
 import { ProjectsService } from './projects/projects.service';
 
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
     private readonly citiesService: CitiesService,
     private readonly projectsService: ProjectsService,
     private readonly buildersService: BuildersService
     ) {}
+  
+  @Get('/facebook')
+  @UseGuards(AuthGuard('facebook'))
+  async facebookLogin(): Promise<any> {
+    return HttpStatus.OK;
+  }
+
+  @Get('/facebook/redirect')
+  @UseGuards(AuthGuard('facebook'))
+  async facebookLoginRedirect(@Req() req: IFacebookLoginRequestInterace): Promise<any> {
+    // call user service and create user here
+    return {
+      statusCode: HttpStatus.OK,
+      data: req.user,
+    };
+  }
 
   @Get('/searchall')
   @ApiOperation({ summary: 'Search entities' })

@@ -2,7 +2,6 @@ import { createMock } from '@golevelup/ts-jest';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Types } from 'mongoose';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { BuildersService } from './builders/builders.service';
 import { Builder } from './builders/entities/builder.entity';
 import { CitiesService } from './cities/cities.service';
@@ -41,7 +40,6 @@ describe('AppController', () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
       providers: [
-        AppService,
         {
           provide: BuildersService,
           useValue: mockBuildersService,

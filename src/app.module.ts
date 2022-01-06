@@ -2,12 +2,12 @@ import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AuthenticationMiddleware } from './middleware/authentication.middleware';
 import { BuildersModule } from './builders/builders.module';
 import { CitiesModule } from './cities/cities.module';
 import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
+import { FacebookLoginStrategy } from './facebook-login.strategy';
 
 @Module({
   imports: [
@@ -25,12 +25,13 @@ import { UsersModule } from './users/users.module';
     ProjectsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [FacebookLoginStrategy],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthenticationMiddleware)
+      .exclude('facebook')
       .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }
