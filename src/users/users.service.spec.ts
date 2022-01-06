@@ -30,6 +30,10 @@ describe('UsersService', () => {
     service = module.get<UsersService>(UsersService);
   });
 
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
@@ -49,5 +53,39 @@ describe('UsersService', () => {
       expect(mockMongoModelSaveSpy).toHaveBeenCalledTimes(1);
       expect(result).toEqual(mockCreatedUser);
     });
-  })
+  });
+
+  describe('search', () => {
+    it('should be defined', () => {
+      expect(service.search).toBeDefined();
+    });
+
+    it('should return an empty array when no users are found', async () => {
+      const mockMongoModelFindSpy = jest
+      .spyOn(MockMongoModel, 'find');
+      const mockMongoModelExecSpy = jest
+        .spyOn(MockMongoModel, 'exec')
+        .mockResolvedValueOnce([]);
+
+      const result = await service.search({ query: 'does-not-exist' });
+
+      expect(mockMongoModelFindSpy).toHaveBeenCalledTimes(1);
+      expect(mockMongoModelExecSpy).toHaveBeenCalledTimes(1);
+      expect(result).toStrictEqual([]);
+    });
+
+    it ('should return an array of matching users', async () => {
+      const mockMongoModelFindSpy = jest
+      .spyOn(MockMongoModel, 'find');
+      const mockMongoModelExecSpy = jest
+      .spyOn(MockMongoModel, 'exec')
+      .mockResolvedValueOnce([mockCreatedUser]);
+
+      const result = await service.search({ query: 'jon' });
+
+      expect(mockMongoModelFindSpy).toHaveBeenCalledTimes(1);
+      expect(mockMongoModelExecSpy).toHaveBeenCalledTimes(1);
+      expect(result).toStrictEqual([mockCreatedUser]);
+    });
+  });
 });

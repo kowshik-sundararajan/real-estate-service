@@ -30,6 +30,10 @@ describe('CitiesService', () => {
     service = module.get<CitiesService>(CitiesService);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
@@ -49,5 +53,39 @@ describe('CitiesService', () => {
       expect(mockMongoModelSaveSpy).toHaveBeenCalledTimes(1);
       expect(result).toEqual(mockCreatedCity);
     });
-  })
+  });
+
+  describe('search', () => {
+    it('should be defined', () => {
+      expect(service.search).toBeDefined();
+    });
+
+    it('should return an empty array when no cities are found', async () => {
+      const mockMongoModelFindSpy = jest
+      .spyOn(MockMongoModel, 'find');
+      const mockMongoModelExecSpy = jest
+        .spyOn(MockMongoModel, 'exec')
+        .mockResolvedValueOnce([]);
+
+      const result = await service.search({ query: 'does-not-exist' });
+
+      expect(mockMongoModelFindSpy).toHaveBeenCalledTimes(1);
+      expect(mockMongoModelExecSpy).toHaveBeenCalledTimes(1);
+      expect(result).toStrictEqual([]);
+    });
+
+    it ('should return an array of matching cities', async () => {
+      const mockMongoModelFindSpy = jest
+      .spyOn(MockMongoModel, 'find');
+      const mockMongoModelExecSpy = jest
+      .spyOn(MockMongoModel, 'exec')
+      .mockResolvedValueOnce([mockCreatedCity]);
+
+      const result = await service.search({ query: 'singapore' });
+
+      expect(mockMongoModelFindSpy).toHaveBeenCalledTimes(1);
+      expect(mockMongoModelExecSpy).toHaveBeenCalledTimes(1);
+      expect(result).toStrictEqual([mockCreatedCity]);
+    });
+  });
 });
