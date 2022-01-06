@@ -28,9 +28,9 @@ import { UsersModule } from './users/users.module';
   providers: [AppService],
 })
 export class AppModule {
-  // configure(consumer: MiddlewareConsumer) {
-  //   consumer
-  //     .apply(AuthenticationMiddleware)
-  //     .forRoutes({ path: '*', method: RequestMethod.ALL });
-  // }
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthenticationMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
 }
