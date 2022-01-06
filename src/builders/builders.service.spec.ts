@@ -88,4 +88,38 @@ describe('BuildersService', () => {
       expect(result).toStrictEqual([mockCreatedBuilder]);
     });
   });
+
+  describe('findOne', () => {
+    it('should be defined', () => {
+      expect(service.findOne).toBeDefined();
+    });
+
+    it('should return an empty object if the builder is not found', async () => {
+      const mockMongoModelFindByIdSpy = jest
+      .spyOn(MockMongoModel, 'findById');
+      const mockMongoModelExecSpy = jest
+        .spyOn(MockMongoModel, 'exec')
+        .mockResolvedValueOnce({});
+
+      const result = await service.findOne({ id: 'does-not-exist' });
+
+      expect(mockMongoModelFindByIdSpy).toHaveBeenCalledTimes(1);
+      expect(mockMongoModelExecSpy).toHaveBeenCalledTimes(1);
+      expect(result).toStrictEqual({});
+    });
+
+    it('should return the matching builder', async () => {
+      const mockMongoModelFindByIdSpy = jest
+      .spyOn(MockMongoModel, 'findById');
+      const mockMongoModelExecSpy = jest
+        .spyOn(MockMongoModel, 'exec')
+        .mockResolvedValueOnce(mockCreatedBuilder);
+
+      const result = await service.findOne({ id: 's0meBu1lderId' });
+
+      expect(mockMongoModelFindByIdSpy).toHaveBeenCalledTimes(1);
+      expect(mockMongoModelExecSpy).toHaveBeenCalledTimes(1);
+      expect(result).toStrictEqual(mockCreatedBuilder);
+    });
+  });
 });

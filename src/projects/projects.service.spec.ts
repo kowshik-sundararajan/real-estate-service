@@ -87,4 +87,38 @@ describe('ProjectsService', () => {
       expect(result).toStrictEqual([mockCreatedProject]);
     });
   });
+
+  describe('findOne', () => {
+    it('should be defined', () => {
+      expect(service.findOne).toBeDefined();
+    });
+
+    it('should return an empty object if the project is not found', async () => {
+      const mockMongoModelFindByIdSpy = jest
+      .spyOn(MockMongoModel, 'findById');
+      const mockMongoModelExecSpy = jest
+        .spyOn(MockMongoModel, 'exec')
+        .mockResolvedValueOnce({});
+
+      const result = await service.findOne({ id: 'does-not-exist' });
+
+      expect(mockMongoModelFindByIdSpy).toHaveBeenCalledTimes(1);
+      expect(mockMongoModelExecSpy).toHaveBeenCalledTimes(1);
+      expect(result).toStrictEqual({});
+    });
+
+    it('should return the matching project', async () => {
+      const mockMongoModelFindByIdSpy = jest
+      .spyOn(MockMongoModel, 'findById');
+      const mockMongoModelExecSpy = jest
+        .spyOn(MockMongoModel, 'exec')
+        .mockResolvedValueOnce(mockCreatedProject);
+
+      const result = await service.findOne({ id: 's0mePr0jectId' });
+
+      expect(mockMongoModelFindByIdSpy).toHaveBeenCalledTimes(1);
+      expect(mockMongoModelExecSpy).toHaveBeenCalledTimes(1);
+      expect(result).toStrictEqual(mockCreatedProject);
+    });
+  });
 });
